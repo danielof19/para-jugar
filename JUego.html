@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Juego del Agua</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f9fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 500px;
+        }
+
+        h1 {
+            color: #3498db;
+        }
+
+        .question {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .option {
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .option:hover {
+            background-color: #2980b9;
+        }
+
+        .correct {
+            background-color: #27ae60;
+        }
+
+        .wrong {
+            background-color: #e74c3c;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Juego Educativo: La Importancia del Agua</h1>
+        <div class="question">¿Cuál de estas son formas de purificar el agua?</div>
+
+        <div class="options">
+            <div class="option" data-answer="correct">Filtrar el agua con un filtro de carbono</div>
+            <div class="option" data-answer="wrong">Llenarla de contaminantes</div>
+            <div class="option" data-answer="correct">Hervir el agua</div>
+            <div class="option" data-answer="wrong">Dejarla sin tratar</div>
+        </div>
+
+        <div class="result hidden"></div>
+        <div class="message hidden">
+            <p>El agua es esencial para la vida. Debemos aprender a cuidarla y purificarla para garantizar que todos tengan acceso a agua limpia y saludable.</p>
+        </div>
+    </div>
+
+    <script>
+        // Seleccionar las opciones y el contenedor de resultados
+        const options = document.querySelectorAll('.option');
+        const resultContainer = document.querySelector('.result');
+        const messageContainer = document.querySelector('.message');
+
+        options.forEach(option => {
+            option.addEventListener('click', function() {
+                const answer = this.getAttribute('data-answer');
+
+                // Cambiar color según la respuesta
+                if (answer === 'correct') {
+                    this.classList.add('correct');
+                    resultContainer.textContent = '¡Correcto! Esta es una manera de purificar el agua.';
+                } else {
+                    this.classList.add('wrong');
+                    resultContainer.textContent = 'Incorrecto. Esta no es una forma adecuada de purificar el agua.';
+                }
+
+                // Mostrar el mensaje al final
+                resultContainer.classList.remove('hidden');
+                messageContainer.classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
